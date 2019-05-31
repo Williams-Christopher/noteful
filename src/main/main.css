@@ -1,5 +1,7 @@
 .main {
-    border: 1px solid blue;
-    /* flex: 0 1 80vw; */
     width: 75vw;
+}
+
+.main__heading {
+    margin-left: 20px;
 }

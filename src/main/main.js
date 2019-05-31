@@ -11,7 +11,7 @@ function Main(props) {
 
     return (
         <section className='main'>
-            <h1>Main placeholder</h1>
+            <h2 className='main__heading'>Notes:</h2>
             {/* <p>Dynamic route: {props.match.params.dynamic}</p> */}
             {notes}
             <Button buttonText='Add note' />

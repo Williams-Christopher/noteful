@@ -12,10 +12,10 @@ function Note(props) {
         <article className='note'>
             <div className='note__summary'>
                 {props.detailNote ?
-                        <h1>{props.name}</h1>
+                        <h2>{props.name}</h2>
                     :
-                        <Link to={'/note/' + props.id}>
-                            <h1>{props.name}</h1>
+                        <Link to={'/note/' + props.id} className='note__link'>
+                            <h2>{props.name}</h2>
                         </Link>
                 }
                 <p>Modified {convertDateTime(props.modified)}</p>

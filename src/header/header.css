@@ -1,6 +1,6 @@
 header {
     height: 100px;
-    background-color: darkgrey;
+    background-color: lightblue;
     text-align: center;
     line-height: 100px;
 }
@@ -14,7 +14,7 @@ header {
 
 .header__link:hover,
 .header__link:active {
-    color: moccasin;
+    color: forestgreen;
 }
 
 header h1 {

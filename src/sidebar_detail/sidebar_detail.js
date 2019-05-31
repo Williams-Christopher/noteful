@@ -1,15 +1,16 @@
 import React from 'react';
+import Folder from '../folder/folder';
 import Button from '../button/button';
-import './sidebar_detail.css';
 
 function SidebarDetail(props) {
     console.log('SidebarDetail');
     console.log(props);
     return (
         <nav className='sidebar'>
+            <h2 className='sidebar__heading'>Folder list:</h2>
             <ul className='folder_list'>
                 <li>
-                    {props.folder.name}
+                    <Folder id={props.folder.id} name={props.folder.name} /> 
                 </li>
                 <Button buttonText='Go back' />
             </ul>
@@ -18,7 +19,7 @@ function SidebarDetail(props) {
 }
 
 SidebarDetail.defaultProps={
-    folderName: null,
+    folder: {},
 }
 
 export default SidebarDetail;

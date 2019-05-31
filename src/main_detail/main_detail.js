@@ -1,7 +1,6 @@
 import React from 'react';
 import Note from '../note/note';
 import Button from '../button/button';
-import './main_detail.css';
 
 function MainDetail(props) {
     console.log('MainDetail');
@@ -12,7 +11,7 @@ function MainDetail(props) {
 
     return (
         <section className='main'>
-            <h1>MainDetail placeholder</h1>
+            <h2 className='main__heading'>Note detail:</h2>
             {/* <p>Dynamic route: {props.match.params.dynamic}</p> */}
             <Note {...props.note} detailNote={true}/>
             <Button buttonText='Add note' />

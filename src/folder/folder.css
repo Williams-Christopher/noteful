@@ -14,15 +14,16 @@
     font-weight: bold;
 }
 
-.active:link,
-.active:visited,
-.active:hover,
-.active:active {
+.folder__link:link,
+.folder__link:visited,
+.folder__link:hover,
+.folder__link:active {
     text-decoration: none;
     color: black;
 }
 
-.active:hover,
-.active:active {
+.folder__link:hover,
+.folder__link:active {
+    font-weight: bold;
     color: red;
 }

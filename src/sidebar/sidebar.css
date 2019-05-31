@@ -1,7 +1,9 @@
 .sidebar {
-    border: 1px solid red;
-    /* flex: 0 20vw 1; */
     width: 25vw;
+}
+
+.sidebar__heading {
+    margin-left: 20px;
 }
 
 .folder_list {

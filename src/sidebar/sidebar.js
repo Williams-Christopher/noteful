@@ -9,7 +9,7 @@ function Sidebar(props) {
     let folders = props.folders.map((f, i) => {
         return(
             <li>
-                <NavLink to={'/folder/' + f.id}>
+                <NavLink to={'/folder/' + f.id} className='folder__link'>
                     <Folder name={f.name} id={f.id} />
                 </NavLink>
             </li>
@@ -18,6 +18,7 @@ function Sidebar(props) {
 
     return (
         <nav className='sidebar'>
+            <h2 className='sidebar__heading'>Folder list:</h2>
             <ul className='folder_list'>
                 {folders}
                 <Button buttonText='Add folder' />
