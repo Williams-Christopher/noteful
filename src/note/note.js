@@ -19,7 +19,6 @@ function Note(props) {
                         </Link>
                 }
                 <p>Modified {convertDateTime(props.modified)}</p>
-                <Button buttonText='Delete' />
             </div>
             {props.detailNote ? 
                     <div className='note__detail'>
@@ -28,6 +27,7 @@ function Note(props) {
                 :
                     ''
             }
+            <Button buttonText='Delete' />
         </article>
     );
 }
