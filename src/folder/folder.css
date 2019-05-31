@@ -1,0 +1,11 @@
+.folder {
+    width: 20vw;
+    height: 50px;
+    margin: 10px auto;
+    line-height: 50px;
+    background-color: moccasin;
+}
+
+.folder__name {
+    margin: 0 0 0 20px;
+}

@@ -28,8 +28,22 @@ class App extends React.Component {
       <>
         <Header />
         <main className='app'>
-          <Sidebar />
-          <Main />
+          <Route exact path='/' render={(routerProps) => {
+            return(
+              <>
+                <Sidebar folders={this.state.folders} />
+                <Main notes={this.state.notes}/>
+              </>)
+            }}
+          />
+          <Route path='/folder/:folderId' render={(routerProps) => {
+            return(
+              <>
+                <Sidebar />
+                <Main />
+              </>)
+            }}
+          />
         </main>
       </>
     );
