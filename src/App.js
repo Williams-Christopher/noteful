@@ -3,6 +3,8 @@ import {Route} from 'react-router-dom';
 import Header from './header/header';
 import Sidebar from './sidebar/sidebar';
 import Main from './main/main';
+import SidebarDetail from './sidebar_detail/sidebar_detail';
+import MainDetail from './main_detail/main_detail';
 import DATA from './dummy-store';
 import './App.css';
 
@@ -31,7 +33,7 @@ class App extends React.Component {
           <Route exact path='/' render={(routerProps) => {
             return(
               <>
-                <Sidebar folders={this.state.folders} />
+                <Sidebar folders={this.state.folders} detailView={false} />
                 <Main notes={this.state.notes}/>
               </>)
             }}
@@ -44,6 +46,17 @@ class App extends React.Component {
               </>)
             }}
           />
+          <Route path='/note/:noteId' render={(routerProps) => {
+              let selectedNote = this.state.notes.find(n => n.id === routerProps.match.params.noteId)
+              let parentFolder = this.state.folders.find(f => f.id === selectedNote.folderId)
+              
+              return(
+                <>
+                  <SidebarDetail folder={parentFolder} />
+                  <MainDetail note={selectedNote} detailNote={true} />
+                </>)
+              }
+            } />
         </main>
       </>
     );

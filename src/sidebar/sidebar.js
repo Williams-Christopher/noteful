@@ -4,7 +4,8 @@ import Folder from '../folder/folder';
 import Button from '../button/button';
 import './sidebar.css';
 
-function Sidebar(props) {    
+function Sidebar(props) {
+    console.log('Sidebar');
     let folders = props.folders.map((f, i) => {
         return(
             <li>
@@ -12,8 +13,8 @@ function Sidebar(props) {
                     <Folder name={f.name} id={f.id} />
                 </NavLink>
             </li>
-        )
-    })
+        );
+    });
 
     return (
         <nav className='sidebar'>
@@ -23,6 +24,10 @@ function Sidebar(props) {
             </ul>
         </nav>
     )
+}
+
+Sidebar.defaultProps={
+    folders: [],
 }
 
 export default Sidebar;
