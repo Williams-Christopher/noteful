@@ -1,0 +1,29 @@
+.folder {
+    width: 20vw;
+    height: 50px;
+    margin: 10px auto;
+    line-height: 50px;
+    background-color: moccasin;
+}
+
+.folder__name {
+    margin: 0 0 0 20px;
+}
+
+.active {
+    font-weight: bold;
+}
+
+.folder__link:link,
+.folder__link:visited,
+.folder__link:hover,
+.folder__link:active {
+    text-decoration: none;
+    color: black;
+}
+
+.folder__link:hover,
+.folder__link:active {
+    font-weight: bold;
+    color: red;
+}

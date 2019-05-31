@@ -1,0 +1,13 @@
+.sidebar {
+    width: 25vw;
+}
+
+.sidebar__heading {
+    margin-left: 20px;
+}
+
+.folder_list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}

@@ -1,0 +1,29 @@
+.note {
+    width: 85%;
+    margin: 20px auto;
+    border: 1px solid red;
+}
+
+.note__summary {
+    margin: 20px;
+}
+
+.note__link:link,
+.note__link:visited,
+.note__link:hover,
+.note__link:active {
+    text-decoration: none;
+    color: black;
+}
+
+.note__link:hover,
+.note__link:active {
+    font-weight: bolder;
+    font-style: italic;
+    color: red;
+}
+
+.note__detail {
+    width: 85%;
+    margin: 20px auto;
+}

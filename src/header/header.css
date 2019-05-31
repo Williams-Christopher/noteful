@@ -1,0 +1,22 @@
+header {
+    height: 100px;
+    background-color: lightblue;
+    text-align: center;
+    line-height: 100px;
+}
+.header__link:link,
+.header__link:visited,
+.header__link:hover,
+.header__link:active {
+    text-decoration: none;
+    color: black;
+}
+
+.header__link:hover,
+.header__link:active {
+    color: forestgreen;
+}
+
+header h1 {
+    margin: 0;
+}
