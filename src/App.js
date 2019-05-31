@@ -47,7 +47,9 @@ class App extends React.Component {
             }}
           />
           <Route path='/note/:noteId' render={(routerProps) => {
+              // Get the note that's been selected...
               let selectedNote = this.state.notes.find(n => n.id === routerProps.match.params.noteId)
+              // So that we can get the corresponding folder...
               let parentFolder = this.state.folders.find(f => f.id === selectedNote.folderId)
               
               return(

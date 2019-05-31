@@ -5,7 +5,6 @@ import Button from '../button/button';
 import './sidebar.css';
 
 function Sidebar(props) {
-    console.log('Sidebar');
     let folders = props.folders.map((f, i) => {
         return(
             <li>

@@ -3,8 +3,6 @@ import Folder from '../folder/folder';
 import Button from '../button/button';
 
 function SidebarDetail(props) {
-    console.log('SidebarDetail');
-    console.log(props);
     return (
         <nav className='sidebar'>
             <h2 className='sidebar__heading'>Folder list:</h2>
