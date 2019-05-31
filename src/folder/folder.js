@@ -3,9 +3,9 @@ import './folder.css';
 
 function Folder(props) {
     return(
-        <section className='folder' key={props.id}>
-        <p className='folder__name'>{props.name}</p>
-    </section>
+        <div className='folder' key={props.id}>
+            <p className='folder__name'>{props.name}</p>
+        </div>
     );
 }
 

@@ -39,8 +39,8 @@ class App extends React.Component {
           <Route path='/folder/:folderId' render={(routerProps) => {
             return(
               <>
-                <Sidebar />
-                <Main />
+                <Sidebar folders={this.state.folders} />
+                <Main notes={this.state.notes.filter(n => n.folderId === routerProps.match.params.folderId)} />
               </>)
             }}
           />

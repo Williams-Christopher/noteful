@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 import Folder from '../folder/folder';
 import Button from '../button/button';
 import './sidebar.css';
@@ -6,16 +7,21 @@ import './sidebar.css';
 function Sidebar(props) {    
     let folders = props.folders.map((f, i) => {
         return(
-            <Folder name={f.name} id={f.id} />
+            <li>
+                <NavLink to={'/folder/' + f.id}>
+                    <Folder name={f.name} id={f.id} />
+                </NavLink>
+            </li>
         )
     })
 
     return (
-        <section className='sidebar'>
-            <h1>Sidebar placeholder</h1>
-            {folders}
-            <Button buttonText='Add folder' />
-        </section>
+        <nav className='sidebar'>
+            <ul className='folder_list'>
+                {folders}
+                <Button buttonText='Add folder' />
+            </ul>
+        </nav>
     )
 }
 
