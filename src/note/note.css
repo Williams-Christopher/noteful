@@ -1,0 +1,13 @@
+.note {
+    width: 80%;
+    margin: 20px auto;
+    border: 1px solid red;
+}
+
+.note__summary {
+    margin: 20px;
+}
+
+.note__detail {
+    border: 1 px solid pink;
+}
