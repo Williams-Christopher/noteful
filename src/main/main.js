@@ -4,6 +4,7 @@ import Button from '../button/button';
 import './main.css';
 
 function Main(props) {
+    console.log('Main');
     let notes = props.notes.map((n, i) =>
         <Note {...n} />
     );
@@ -16,6 +17,10 @@ function Main(props) {
             <Button buttonText='Add note' />
         </section>
     )
+}
+
+Main.defaultProps = {
+    notes: [],
 }
 
 export default Main;

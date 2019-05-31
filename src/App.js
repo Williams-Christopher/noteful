@@ -31,7 +31,7 @@ class App extends React.Component {
           <Route exact path='/' render={(routerProps) => {
             return(
               <>
-                <Sidebar folders={this.state.folders} />
+                <Sidebar folders={this.state.folders} detailView={false} />
                 <Main notes={this.state.notes}/>
               </>)
             }}
