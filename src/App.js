@@ -1,8 +1,11 @@
 import React from 'react';
+import {Route} from 'react-router-dom';
+import Header from './header/header';
+
 function App() {
   return (
     <main className='App'>
-      {/* content goes here */}
+      <Header />
     </main>
   );
 }
