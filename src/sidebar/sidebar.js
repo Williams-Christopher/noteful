@@ -1,10 +1,9 @@
 import React from 'react';
 import Folder from '../folder/folder';
+import Button from '../button/button';
 import './sidebar.css';
 
-function Sidebar(props) {
-    let display = props.match ? props.value.match.params.folderId : '';
-    
+function Sidebar(props) {    
     let folders = props.folders.map((f, i) => {
         return(
             <Folder name={f.name} id={f.id} />
@@ -14,9 +13,8 @@ function Sidebar(props) {
     return (
         <section className='sidebar'>
             <h1>Sidebar placeholder</h1>
-            <p>{display}</p>
             {folders}
-            <button>Add Folder</button>
+            <Button buttonText='Add folder' />
         </section>
     )
 }
