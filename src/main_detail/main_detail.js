@@ -6,7 +6,6 @@ function MainDetail(props) {
     return (
         <section className='main'>
             <h2 className='main__heading'>Note detail:</h2>
-            {/* <p>Dynamic route: {props.match.params.dynamic}</p> */}
             <Note {...props.note} detailNote={true}/>
             <Button buttonText='Add note' />
         </section>
@@ -14,7 +13,7 @@ function MainDetail(props) {
 }
 
 MainDetail.defaultProps = {
-    notes: [],
+    note: '',
 }
 
 export default MainDetail;
