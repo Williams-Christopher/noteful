@@ -40,7 +40,7 @@ class App extends React.Component {
             <Route exact path='/' render={(routerProps) => {
               return(
                 <>
-                  <Sidebar folders={this.state.folders} detailView={false} />
+                  <Sidebar folders={this.state.folders} />
                   <Main notes={this.state.notes}/>
                 </>)
               }}
