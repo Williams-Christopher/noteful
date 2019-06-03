@@ -6,6 +6,7 @@ import Main from './main/main';
 import SidebarDetail from './sidebar_detail/sidebar_detail';
 import MainDetail from './main_detail/main_detail';
 import DATA from './dummy-store';
+import NotefulContext from './NotefulContext';
 import './App.css';
 
 class App extends React.Component {
@@ -26,40 +27,54 @@ class App extends React.Component {
   }
 
   render() {
+    const contextValue = {
+      folders: this.state.folders,
+      notes: this.state.notes,
+    }
+
     return (
       <>
         <Header />
-        <main className='app'>
-          <Route exact path='/' render={(routerProps) => {
-            return(
-              <>
-                <Sidebar folders={this.state.folders} detailView={false} />
-                <Main notes={this.state.notes}/>
-              </>)
-            }}
-          />
-          <Route path='/folder/:folderId' render={(routerProps) => {
-            return(
-              <>
-                <Sidebar folders={this.state.folders} />
-                <Main notes={this.state.notes.filter(n => n.folderId === routerProps.match.params.folderId)} />
-              </>)
-            }}
-          />
-          <Route path='/note/:noteId' render={(routerProps) => {
-              // Get the note that's been selected...
-              let selectedNote = this.state.notes.find(n => n.id === routerProps.match.params.noteId)
-              // So that we can get the corresponding folder...
-              let parentFolder = this.state.folders.find(f => f.id === selectedNote.folderId)
-              
+        <NotefulContext.Provider value={contextValue}>
+          <main className='app'>
+            <Route exact path='/' render={(routerProps) => {
+              contextValue.folders = this.state.folders;
+              contextValue.notes = this.state.notes;
+              return(
+   
+                <>
+                  <Sidebar />
+                  <Main />
+                </>)
+              }}
+            />
+            <Route path='/folder/:folderId' render={(routerProps) => {
+              contextValue.notes = this.state.notes.filter(n => n.folderId === routerProps.match.params.folderId)
               return(
                 <>
-                  <SidebarDetail folder={parentFolder} />
-                  <MainDetail note={selectedNote} detailNote={true} />
+                  <Sidebar />
+                  <Main />
                 </>)
-              }
-            } />
-        </main>
+              }}
+            />
+            <Route path='/note/:noteId' render={(routerProps) => {
+                // Get the note that's been selected...
+                let selectedNote = this.state.notes.find(n => n.id === routerProps.match.params.noteId)
+                // So that we can get the corresponding folder...
+                let parentFolder = this.state.folders.find(f => f.id === selectedNote.folderId)
+                contextValue.folder = parentFolder;
+                contextValue.note = selectedNote;
+                contextValue.detailNote = true;
+                console.log(contextValue);
+                return(
+                  <>
+                    <SidebarDetail />
+                    <MainDetail />
+                  </>)
+                }
+              } />
+          </main>
+        </NotefulContext.Provider>
       </>
     );
   }
