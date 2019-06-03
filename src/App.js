@@ -38,18 +38,22 @@ class App extends React.Component {
         <NotefulContext.Provider value={contextValue}>
           <main className='app'>
             <Route exact path='/' render={(routerProps) => {
+              contextValue.folders = this.state.folders;
+              contextValue.notes = this.state.notes;
               return(
+   
                 <>
-                  <Sidebar folders={this.state.folders} />
-                  <Main notes={this.state.notes}/>
+                  <Sidebar />
+                  <Main />
                 </>)
               }}
             />
             <Route path='/folder/:folderId' render={(routerProps) => {
+              contextValue.notes = this.state.notes.filter(n => n.folderId === routerProps.match.params.folderId)
               return(
                 <>
-                  <Sidebar folders={this.state.folders} />
-                  <Main notes={this.state.notes.filter(n => n.folderId === routerProps.match.params.folderId)} />
+                  <Sidebar />
+                  <Main />
                 </>)
               }}
             />
