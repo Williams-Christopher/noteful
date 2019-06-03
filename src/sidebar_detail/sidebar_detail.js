@@ -7,12 +7,11 @@ function SidebarDetail() {
     return (
         <NotefulContext.Consumer>
             {(context) => (
-                console.log(context),
                 <nav className='sidebar'>
                     <h2 className='sidebar__heading'>Folder list:</h2>
                     <ul className='folder_list'>
                         <li>
-                            <Folder id={context.folder.id} name={context.folder.name} /> 
+                            <Folder id={context.folder.id || {}} name={context.folder.name || {}} /> 
                         </li>
                         <Button buttonText='Go back' />
                     </ul>
