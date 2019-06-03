@@ -62,11 +62,14 @@ class App extends React.Component {
                 let selectedNote = this.state.notes.find(n => n.id === routerProps.match.params.noteId)
                 // So that we can get the corresponding folder...
                 let parentFolder = this.state.folders.find(f => f.id === selectedNote.folderId)
-                
+                contextValue.folder = parentFolder;
+                contextValue.note = selectedNote;
+                contextValue.detailNote = true;
+                console.log(contextValue);
                 return(
                   <>
-                    <SidebarDetail folder={parentFolder} />
-                    <MainDetail note={selectedNote} detailNote={true} />
+                    <SidebarDetail />
+                    <MainDetail />
                   </>)
                 }
               } />
