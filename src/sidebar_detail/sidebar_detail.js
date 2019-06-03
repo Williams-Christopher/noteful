@@ -13,8 +13,8 @@ function SidebarDetail() {
                         <li>
                             <Folder id={context.folder.id || {}} name={context.folder.name || {}} /> 
                         </li>
-                        <Button buttonText='Go back' />
                     </ul>
+                    <button className='sidebar__button'>Go back</button>
                 </nav>
             )}
         </NotefulContext.Consumer>

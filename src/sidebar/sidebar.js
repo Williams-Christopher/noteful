@@ -22,8 +22,9 @@ function Sidebar(props) {
                             )
                         })
                         }
-                        <Button buttonText='Add folder' />
+                        {/* <Button buttonText='Add folder' /> */}
                     </ul>
+                    <button className='sidebar__button'>Add Folder</button>
                 </nav>
             )}
         </NotefulContext.Consumer>
