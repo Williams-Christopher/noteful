@@ -18,14 +18,15 @@ class App extends React.Component {
     };
   }
 
+  url = 'http://localhost:9090';
+
   componentDidMount() {
-    const url = 'http://localhost:9090';
     // Update state with the dummy folder and note data
     // this.setState({
     //   folders: DATA.folders,
     //   notes: DATA.notes,
     // });
-    fetch(url + '/folders')
+    fetch(this.url + '/folders')
     .then(response => {
       if(!response.ok) {
         throw new Error('Folder fetch failed')
@@ -39,7 +40,7 @@ class App extends React.Component {
     })
     .catch(e => console.log(e))
 
-    fetch(url + '/notes')
+    fetch(this.url + '/notes')
     .then(response => {
       if(!response.ok) {
         throw new Error('Notes fetch failed')
@@ -54,10 +55,36 @@ class App extends React.Component {
     .catch(e => console.log(e))
   }
 
+  handleDeleteNote = noteId => {
+    fetch(this.url + '/notes/' + noteId, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+      }
+    })
+    .then(response => {
+      if(!response.ok) {
+        throw new Error('Delete unsucccessful')
+      }
+      return response.json()
+    })
+    .then(data => {
+      console.log(data)
+      let newNotes = this.state.filter(n => n.id !== noteId)
+      this.setState({
+        notes: newNotes,
+      })
+      this.props.children.push('/')
+    })
+  }
+
   render() {
+    console.log('App:', this.props.match);
     const contextValue = {
       folders: this.state.folders,
       notes: this.state.notes,
+      path: this.props.match,
+      deleteNote: this.handleDeleteNote,
     }
 
     return (
@@ -66,10 +93,9 @@ class App extends React.Component {
         <NotefulContext.Provider value={contextValue}>
           <main className='app'>
             <Route exact path='/' render={(routerProps) => {
-              contextValue.folders = this.state.folders;
-              contextValue.notes = this.state.notes;
+              // contextValue.folders = this.state.folders;
+              // contextValue.notes = this.state.notes;
               return(
-   
                 <>
                   <Sidebar />
                   <Main />

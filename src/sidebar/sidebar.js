@@ -9,6 +9,7 @@ function Sidebar(props) {
     return (
         <NotefulContext.Consumer>
             {(context) => (
+                console.log('sidebar context', context),
                 <nav className='sidebar'>
                     <h2 className='sidebar__heading'>Folder list:</h2>
                     <ul className='folder_list'>
