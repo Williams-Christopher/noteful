@@ -5,7 +5,7 @@ import Sidebar from './sidebar/sidebar';
 import Main from './main/main';
 import SidebarDetail from './sidebar_detail/sidebar_detail';
 import MainDetail from './main_detail/main_detail';
-import DATA from './dummy-store';
+// import DATA from './dummy-store';
 import NotefulContext from './NotefulContext';
 import './App.css';
 
@@ -19,11 +19,39 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    const url = 'http://localhost:9090';
     // Update state with the dummy folder and note data
-    this.setState({
-      folders: DATA.folders,
-      notes: DATA.notes,
-    });
+    // this.setState({
+    //   folders: DATA.folders,
+    //   notes: DATA.notes,
+    // });
+    fetch(url + '/folders')
+    .then(response => {
+      if(!response.ok) {
+        throw new Error('Folder fetch failed')
+      }
+      return response.json()
+    })
+    .then(data => {
+      this.setState({
+        folders: data,
+      })
+    })
+    .catch(e => console.log(e))
+
+    fetch(url + '/notes')
+    .then(response => {
+      if(!response.ok) {
+        throw new Error('Notes fetch failed')
+      }
+      return response.json()
+    })
+    .then(data => {
+      this.setState({
+        notes: data,
+      })
+    })
+    .catch(e => console.log(e))
   }
 
   render() {
