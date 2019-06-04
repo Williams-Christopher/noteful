@@ -1,9 +1,10 @@
 import React from 'react';
 import Folder from '../folder/folder';
 import Button from '../button/button';
+import {Link} from 'react-router-dom';
 import NotefulContext from '../NotefulContext';
 
-function SidebarDetail() {
+function SidebarDetail(props) {
     return (
         <NotefulContext.Consumer>
             {(context) => (
@@ -14,7 +15,10 @@ function SidebarDetail() {
                             <Folder id={context.folder.id || {}} name={context.folder.name || {}} /> 
                         </li>
                     </ul>
-                    <button className='sidebar__button'>Go back</button>
+                    {/* I don't like how I'm doing this. Shouldn't this be a .push('/')?? */}
+                    <Link to={'/'}>
+                        <button className='sidebar__button'>Go back</button>
+                    </Link>
                 </nav>
             )}
         </NotefulContext.Consumer>
