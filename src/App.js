@@ -102,7 +102,6 @@ class App extends React.Component {
               }}
             />
             <Route path='/folder/:folderId' render={(routerProps) => {
-              //contextValue.notes = this.state.notes.filter(n => n.folderId === routerProps.match.params.folderId)
               return(
                 <>
                   <Sidebar />
@@ -111,14 +110,6 @@ class App extends React.Component {
               }}
             />
             <Route path='/note/:noteId' render={(routerProps) => {
-                // Get the note that's been selected...
-                let selectedNote = this.state.notes.find(n => n.id === routerProps.match.params.noteId)
-                // So that we can get the corresponding folder...
-                let parentFolder = this.state.folders.find(f => f.id === selectedNote.folderId)
-                // contextValue.folder = parentFolder;
-                // contextValue.note = selectedNote;
-                // contextValue.detailNote = true;
-                // console.log(contextValue);
                 return(
                   <>
                     <SidebarDetail />

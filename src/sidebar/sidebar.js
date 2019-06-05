@@ -9,7 +9,6 @@ function Sidebar(props) {
     return (
         <NotefulContext.Consumer>
             {(context) => {
-                //console.log('sidebar context', context); //Why the error? 
                 return(
                 <nav className='sidebar'>
                     <h2 className='sidebar__heading'>Folder list:</h2>
@@ -32,10 +31,6 @@ function Sidebar(props) {
             }
         </NotefulContext.Consumer>
     )
-}
-
-Sidebar.defaultProps={
-    folders: [],
 }
 
 export default Sidebar;
