@@ -1,15 +1,16 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import Folder from '../folder/folder';
-import Button from '../button/button';
+// import Button from '../button/button';
 import NotefulContext from '../NotefulContext';
 import './sidebar.css';
 
 function Sidebar(props) {
     return (
         <NotefulContext.Consumer>
-            {(context) => (
-                console.log('sidebar context', context),
+            {(context) => {
+                //console.log('sidebar context', context); //Why the error? 
+                return(
                 <nav className='sidebar'>
                     <h2 className='sidebar__heading'>Folder list:</h2>
                     <ul className='folder_list'>
@@ -27,7 +28,8 @@ function Sidebar(props) {
                     </ul>
                     <button className='sidebar__button'>Add Folder</button>
                 </nav>
-            )}
+                )}
+            }
         </NotefulContext.Consumer>
     )
 }

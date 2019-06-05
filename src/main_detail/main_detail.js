@@ -6,13 +6,17 @@ import NotefulContext from '../NotefulContext';
 function MainDetail() {
     return (
         <NotefulContext.Consumer>
-            {(context) => (
-                <section className='main'>
-                    <h2 className='main__heading'>Note detail:</h2>
-                    <Note {...context.note} detailNote={context.detailNote}/>
-                    <Button buttonText='Add note' />
-                </section>
-            )}
+            {(context) => {
+                let noteId = context.path.pathname.split('/')[2];
+                let note = context.notes.find(n => n.id === noteId);
+                return(
+                    <section className='main'>
+                        <h2 className='main__heading'>Note detail:</h2>
+                        <Note {...note} detailNote={true}/>
+                        <Button buttonText='Add note' />
+                    </section>
+                )
+            }}
         </NotefulContext.Consumer>
     )
 }
