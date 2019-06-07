@@ -12,8 +12,10 @@ class SidebarDetail extends React.Component {
     static contextType = NotefulContext;
     
     selectedFolder = () => {
-        let noteId = this.context.path.pathname.split('/')[2];
-        let note = this.context.notes.find(n => n.id === noteId);
+        // let noteId = this.context.path.pathname.split('/')[2];
+        // let note = this.context.notes.find(n => n.id === noteId);
+        let noteId = this.props.match.params.noteId;
+        let note = this.context.notes.find(n => n.id === noteId)
         let folder = this.context.folders.find(f => f.id === note.folderId);
         return folder;
     }

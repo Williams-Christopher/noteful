@@ -1,5 +1,6 @@
 import React from 'react';
-import {Route, withRouter} from 'react-router-dom';
+// import {Route, withRouter} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import Header from './header/header';
 import Sidebar from './sidebar/sidebar';
 import Main from './main/main';
@@ -55,27 +56,11 @@ class App extends React.Component {
     .catch(e => console.log(e))
   }
 
-  handleDeleteNote = noteId => {
-    fetch(this.url + '/notes/' + noteId, {
-      method: 'DELETE',
-      headers: {
-        'content-type': 'application/json',
-      }
-    })
-    .then(response => {
-      if(!response.ok) {
-        throw new Error('Delete unsucccessful')
-      }
-      return response.json()
-    })
-    .then(data => {
-      console.log(data)
-      let newNotes = this.state.filter(n => n.id !== noteId)
-      this.setState({
-        notes: newNotes,
-      })
-      this.props.children.push('/')
-    })
+  deleteNote = noteId => {
+    let newNotes = this.state.notes.filter(n => n.id !== noteId);
+    this.setState({
+      notes: newNotes,
+    });
   }
 
   render() {
@@ -84,8 +69,7 @@ class App extends React.Component {
     const contextValue = {
       folders: this.state.folders,
       notes: this.state.notes,
-      path: this.props.location,
-      deleteNote: this.handleDeleteNote,
+      deleteNote: this.deleteNote,
     }
 
     return (
@@ -93,30 +77,37 @@ class App extends React.Component {
         <Header />
         <NotefulContext.Provider value={contextValue}>
           <main className='app'>
-            <Route exact path='/' render={(routerProps) => {
+            {/* <Route exact path='/' render={(routerProps) => {
+              console.log('router props: ', routerProps);
               return(
                 <>
                   <Sidebar />
                   <Main />
                 </>)
               }}
-            />
-            <Route path='/folder/:folderId' render={(routerProps) => {
+            /> */}
+            {/* <Route path='/folder/:folderId' render={(routerProps) => {
               return(
                 <>
                   <Sidebar />
                   <Main />
                 </>)
               }}
-            />
-            <Route path='/note/:noteId' render={(routerProps) => {
+            /> */}
+            {/* <Route path='/note/:noteId' render={(routerProps) => {
                 return(
                   <>
                     <SidebarDetail />
                     <MainDetail />
                   </>)
                 }
-              } />
+              } /> */}
+            <Route exact path='/' component={Sidebar} />
+            <Route exact path='/' component={Main} />
+            <Route path='/folder/:folderId' component={Sidebar} />
+            <Route path='/folder/:folderId' component={Main} />
+            <Route path='/note/:noteId' component={SidebarDetail} />
+            <Route path='/note/:noteId' component={MainDetail} />
           </main>
         </NotefulContext.Provider>
       </>
@@ -124,4 +115,5 @@ class App extends React.Component {
   }
 }
 
-export default withRouter(App);
+// export default withRouter(App);
+export default App;

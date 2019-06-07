@@ -7,10 +7,15 @@ import './main.css';
 class Main extends React.Component {
     static contextType = NotefulContext;
     notesForRoute = () => {
-        if(this.context.path.pathname.split('/')[1] === '') {
-            return this.context.notes;
+        // if(this.context.path.pathname.split('/')[1] === '') {
+        //     return this.context.notes;
+        // } else {
+        //     return this.context.notes.filter(n => n.folderId === this.context.path.pathname.split('/')[2]);
+        // }
+        if(this.props.match.path === '/folder/:folderId') {
+            return this.context.notes.filter(n => n.folderId === this.props.match.params.folderId);
         } else {
-            return this.context.notes.filter(n => n.folderId === this.context.path.pathname.split('/')[2]);
+            return this.context.notes;
         }
     }
 
