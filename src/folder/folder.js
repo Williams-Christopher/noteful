@@ -4,7 +4,7 @@ import './folder.css';
 function Folder(props) {
     return(
         <div className='folder' key={props.id}>
-            <p className='folder__name'>{props.name}</p>
+            <p className='folder__name' key={props.id}>{props.name}</p>
         </div>
     );
 }
