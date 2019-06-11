@@ -6,6 +6,8 @@ import Sidebar from './sidebar/sidebar';
 import Main from './main/main';
 import SidebarDetail from './sidebar_detail/sidebar_detail';
 import MainDetail from './main_detail/main_detail';
+import AddFolderForm from './add_folder_form/add_folder_form';
+import AddNoteForm from './add_note_form/add_note_form';
 // import DATA from './dummy-store';
 import NotefulContext from './NotefulContext';
 import './App.css';
@@ -63,6 +65,13 @@ class App extends React.Component {
     });
   }
 
+  addFolder = folder => {
+    let newFolders = [...this.state.folders, folder];
+    this.setState({
+      folders: newFolders
+    });
+  }
+
   render() {
     // console.log('App props.match:', this.props.match);
     // console.log('App props.location: ', this.props.location);
@@ -70,6 +79,7 @@ class App extends React.Component {
       folders: this.state.folders,
       notes: this.state.notes,
       deleteNote: this.deleteNote,
+      addFolder: this.addFolder,
     }
 
     return (
@@ -108,6 +118,10 @@ class App extends React.Component {
             <Route path='/folder/:folderId' component={Main} />
             <Route path='/note/:noteId' component={SidebarDetail} />
             <Route path='/note/:noteId' component={MainDetail} />
+            <Route path='/addFolder' component={Sidebar} />
+            <Route path='/addFolder' component={AddFolderForm} />
+            <Route path='/addNote' component={Sidebar} />
+            <Route path='/addNote' component={AddNoteForm} />
           </main>
         </NotefulContext.Provider>
       </>

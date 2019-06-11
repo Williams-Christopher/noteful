@@ -1,0 +1,43 @@
+.form {
+    margin: 0 auto 20px auto;
+    width: 75vw;
+}
+
+.form__add {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.form__add_label {
+    font-size: 1.5rem;
+}
+
+.form__add_text {
+    border: 2px solid lightgrey;
+    width: 50%;
+    height: 1.9rem;
+    padding: 5px;
+    font-size: 1.5rem;
+}
+
+.form__add_text:focus {
+    background-color: lightblue;
+}
+
+.form__button_container {
+    margin: 20px auto;
+}
+
+.form__add_button {
+    display: inline-block;
+    font-size: 1em;
+    margin: 10px;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    background-color: lightblue;
+}
+
+.form__error {
+    color: red;
+}
