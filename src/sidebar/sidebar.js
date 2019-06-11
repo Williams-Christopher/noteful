@@ -25,7 +25,7 @@ function Sidebar(props) {
                         }
                         {/* <Button buttonText='Add folder' /> */}
                     </ul>
-                    <button className='sidebar__button'>Add Folder</button>
+                    <NavLink to={'/addFolder'}><button className='sidebar__button'>Add Folder</button></NavLink>
                 </nav>
                 )}
             }
