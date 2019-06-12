@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 import Note from '../note/note';
 import Button from '../button/button';
 import NotefulContext from '../NotefulContext';
@@ -21,7 +22,7 @@ class Main extends React.Component {
                      {this.notesForRoute().map((n, i) =>
                          <Note {...n} />
                      )}
-                 <Button buttonText='Add note' />
+                <NavLink to={'/addNote'}><button className='button__add_note'>Add note</button></NavLink>
              </section>
         )
     }

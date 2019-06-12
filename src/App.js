@@ -72,6 +72,13 @@ class App extends React.Component {
     });
   }
 
+  addNote = note => {
+    let newNotes = [...this.state.notes, note];
+    this.setState({
+      notes: newNotes,
+    });
+  }
+
   render() {
     // console.log('App props.match:', this.props.match);
     // console.log('App props.location: ', this.props.location);
@@ -80,6 +87,7 @@ class App extends React.Component {
       notes: this.state.notes,
       deleteNote: this.deleteNote,
       addFolder: this.addFolder,
+      addNote: this.addNote,
     }
 
     return (

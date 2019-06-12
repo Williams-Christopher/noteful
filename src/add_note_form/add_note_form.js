@@ -12,82 +12,132 @@ class AddNoteForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            error: true,
-            errorMessage: '',
-            newFolderName: '',
+            formValid: false,
+            validName: false,
+            validFolder: false,
+            errorMessages: {nameError: '', folderError: '',},
+            newNoteName: '',
+            newNoteContent: '',
+            newNoteFolder: '',
+            APIError: '',
         }
     }
 
     static contextType = NotefuleContext;
 
-    handleAddFolder = e => {
+    handleAddNote = e => {
         e.preventDefault();
-        let {folder_name} = e.target;
-        let requestObject = {"name": folder_name.value};
+        this.setState({APIError: ''});
+        let {note_name, note_content, note_folder} = e.target;
+        let requestBody = {
+            "name": note_name.value,
+            "content": note_content.value,
+            "folderId": note_folder.value,
+            "modified": new Date().toISOString(),
+        };
 
-        fetch(url + '/folders', {
+        fetch(url + '/notes', {
             method: 'POST',
-            body: JSON.stringify(requestObject),
+            body: JSON.stringify(requestBody),
             headers: {'content-type': 'application/json'}
         })
         .then(response => {
             if(!response.ok) {
-                throw new Error('The was an error creating the new folder.')
+                throw new Error('The was an error creating the your note. Please try again in a moment.')
             }
             return response.json()
         })
-        .then(folder => {
-            this.context.addFolder(folder)
-            this.props.history.push('/folder/' + folder.id)
+        .then(note => {
+            this.context.addNote(note)
+            this.props.history.push('/note/' + note.id)
         })
-        .catch(e => console.log(e));
+        .catch(e => this.setState({APIError: e.message}));
     }
 
     handleCancelButton = () => {
         this.props.history.push('/')
     }
 
-    updateNewFolderName(newName) {
-        this.setState({newFolderName: newName}, () => this.validateFolderName(newName))
+    noteNameChanged(newName) {
+        this.setState({newNoteName: newName}, () => this.validateNoteName(newName))
     }
 
-    validateFolderName(newName) {
-        let errorMessage = '';
-        let error = false;
-        // Folder name can't be empty
+    validateNoteName(newName) {
+        let errorMessages = {...this.state.errorMessages};
+        let validName = false;
+        // Note name can't be empty
         if(newName === '') {
-            error = true;
-            errorMessage = 'Folder name can not be empty.';
-        } else if(!this.context.folders.find(f => f.name.toLowerCase() === newName.toLowerCase()) === false) {
-            // Folder name must be unique
-            error = true;
-            errorMessage = 'Folder name must be unique.'
+            validName = false;
+            errorMessages.nameError = 'Note name can not be empty.';
         } else {
-            error = false;
-            errorMessage = '';
+            validName = true;
+            errorMessages.nameError = '';
         }
 
         this.setState({
-            error,
-            errorMessage,
-        });
+            validName,
+            errorMessages,
+        }, this.formIsValid);
+    }
+
+    noteContentChanged(newNoteContent) {
+        this.setState({
+            newNoteContent
+        })
+    }
+
+    folderChanged(folderId) {
+        this.setState({newNoteFolder: folderId}, () => this.validateFolder(folderId));
+    }
+
+    validateFolder(folderId) {
+        let errorMessages = {...this.state.errorMessages};
+        let validFolder = false;
+        // folderId can't be empty
+        if(folderId === '') {
+            errorMessages.nameError = 'Please select a folder.';
+            validFolder = false;
+        } else {
+            errorMessages.nameError = '';
+            validFolder = true;
+        }
+
+        this.setState({
+            errorMessages,
+            validFolder,
+        }, this.formIsValid)
+    }
+
+    formIsValid() {
+        this.setState({
+            formValid: this.state.validName && this.state.validFolder,
+        })
     }
 
     render() {
+        let folders = this.context.folders.map(f => <option value={f.id}>{f.name}</option>);
         return(
             <section className='form'>
-                <h2>Add a new folder:</h2>
-                <form className='form__add' onSubmit={this.handleAddFolder}>
-                    <label className='form__add_label' htmlFor='folder_name'>Name: </label>
-                    <input className='form__add_text' type='text' name='folder_name' id='folder_name' placeholder='Big Ideas' onChange={e => this.validateFolderName(e.target.value)}required />
+                <h2>Add a new note:</h2>
+                <form className='form__add' onSubmit={this.handleAddNote}>
+                    <label className='form__add_label' htmlFor='note_name'>Name: </label>
+                    <input className='form__add_text' type='text' name='note_name' id='note_name' placeholder='How to bake a cake' required onChange={e => this.noteNameChanged(e.target.value)}/>
                     <br />
-                    <ErrorHelp errorMessage={this.state.errorMessage} />
+                    <ErrorHelp errorMessage={this.state.errorMessages.nameError} />
+                    <label className='form__add_label' htmlFor='note_content'>Content:</label>
+                    <textarea className='form__add_textarea' name='note_content' id='note_content' wrap='hard' onChange={e => this.noteContentChanged(e.target.value)} />
+                    <select name='note_folder' required onChange={e => this.folderChanged(e.target.value)}>
+                        <option value=''>Select a folder...</option>
+                        {folders}
+                    </select>
+                    <ErrorHelp errorMessage={this.state.errorMessages.folderError} />
                     <div className='form__button_container'>
-                        <button className='form__add_button' type='submit' disabled={this.state.error}>Add</button>
+                        <button className='form__add_button' type='submit' disabled={!this.state.formValid} >Add</button>
                         {' '}
                         <button className='form__add_button' onClick={this.handleCancelButton}>Cancel</button>
                     </div>
                 </form>
+                <h2>{this.state.APIError}</h2>
             </section>
         )
     }

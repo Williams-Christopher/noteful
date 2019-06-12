@@ -14,7 +14,7 @@
 
 .form__add_text {
     border: 2px solid lightgrey;
-    width: 50%;
+    width: 70%;
     height: 1.9rem;
     padding: 5px;
     font-size: 1.5rem;
@@ -22,6 +22,19 @@
 
 .form__add_text:focus {
     background-color: lightblue;
+}
+
+.form__add_textarea {
+    border: 2px solid lightgrey;
+    width: 70%;
+    height: 12rem;
+    font-size: 1.5rem;
+    resize: none;
+}
+
+.form__add_select {
+    width: 100%;
+    font-size: 1.25rem;
 }
 
 .form__button_container {
