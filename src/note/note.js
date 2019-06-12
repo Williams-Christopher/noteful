@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import NotefulContext from '../NotefulContext';
 import config from '../config';
 import './note.css';
@@ -63,6 +64,14 @@ class Note extends React.Component {
           </article>
       )
   }
+}
+
+Note.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  modified: PropTypes.string,
+  content: PropTypes.string,
+  detailNote: PropTypes.bool,
 }
 
 export default Note;
