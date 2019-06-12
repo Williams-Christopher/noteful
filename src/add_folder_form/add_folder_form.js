@@ -1,5 +1,4 @@
 import React from 'react';
-// import cuid from 'cuid';
 import NotefuleContext from '../NotefulContext';
 import config from '../config';
 import './add_folder_form.css';

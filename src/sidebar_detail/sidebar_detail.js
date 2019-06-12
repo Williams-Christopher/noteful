@@ -1,6 +1,5 @@
 import React from 'react';
 import Folder from '../folder/folder';
-// import Button from '../button/button';
 import {Link} from 'react-router-dom';
 import NotefulContext from '../NotefulContext';
 

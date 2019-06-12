@@ -1,7 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import Folder from '../folder/folder';
-// import Button from '../button/button';
 import NotefulContext from '../NotefulContext';
 import './sidebar.css';
 
@@ -23,7 +22,6 @@ function Sidebar(props) {
                             )
                         })
                         }
-                        {/* <Button buttonText='Add folder' /> */}
                     </ul>
                     <NavLink to={'/addFolder'}><button className='sidebar__button'>Add Folder</button></NavLink>
                 </nav>

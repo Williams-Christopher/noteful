@@ -1,7 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import Note from '../note/note';
-import Button from '../button/button';
 import NotefulContext from '../NotefulContext';
 
 class MainDetail extends React.Component {

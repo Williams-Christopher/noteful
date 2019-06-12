@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-// import Button from '../button/button';
 import NotefulContext from '../NotefulContext';
 import config from '../config';
 import './note.css';
@@ -17,7 +16,7 @@ class Note extends React.Component {
   static contextType = NotefulContext;
 
   handleDeleteNote (e, noteId, callback) {
-    //e.preventDefault();
+    e.preventDefault();
     console.log('Request to delete note with id ', noteId);
     fetch(config.url + '/notes/' + noteId, {
       method: 'DELETE',

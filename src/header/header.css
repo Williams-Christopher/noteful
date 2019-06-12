@@ -4,6 +4,7 @@ header {
     text-align: center;
     line-height: 100px;
 }
+
 .header__link:link,
 .header__link:visited,
 .header__link:hover,

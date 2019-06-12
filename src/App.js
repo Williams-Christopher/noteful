@@ -1,5 +1,4 @@
 import React from 'react';
-// import {Route, withRouter} from 'react-router-dom';
 import {Route} from 'react-router-dom';
 import Header from './header/header';
 import Sidebar from './sidebar/sidebar';
@@ -8,7 +7,6 @@ import SidebarDetail from './sidebar_detail/sidebar_detail';
 import MainDetail from './main_detail/main_detail';
 import AddFolderForm from './add_folder_form/add_folder_form';
 import AddNoteForm from './add_note_form/add_note_form';
-// import DATA from './dummy-store';
 import NotefulContext from './NotefulContext';
 import config from './config';
 import './App.css';
@@ -136,5 +134,4 @@ class App extends React.Component {
   }
 }
 
-// export default withRouter(App);
 export default App;
