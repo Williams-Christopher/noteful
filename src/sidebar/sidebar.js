@@ -24,7 +24,7 @@ function Sidebar(props) {
                                     )
                                 })}
                             </ul>
-                            <NavLink to={'/addFolder'}><button className='sidebar__button'>Add Folder</button></NavLink>
+                            <button className='sidebar__button' onClick={() => props.history.push('/addFolder')}>Add Folder</button>
                         </nav>
                     </ErrorBoundaryFolders>
                 )

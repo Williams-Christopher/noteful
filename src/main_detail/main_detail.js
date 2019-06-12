@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import Note from '../note/note';
 import ErrorBoundaryNotes from '../error_boundaries/error_boundary_notes';
 import NotefulContext from '../NotefulContext';
@@ -24,7 +23,7 @@ class MainDetail extends React.Component {
                 <section className='main'>
                     <h2 className='main__heading'>Note detail:</h2>
                     <Note {...note} detailNote={true} onDelete={this.handleDelete} />
-                    <NavLink to={'/addNote'}><button className='button__add_note'>Add note</button></NavLink>
+                    <button className='button__add_note' onClick={() => this.props.history.push('/addNote')}>Add note</button>
                 </section>
             </ErrorBoundaryNotes>
         )

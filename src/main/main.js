@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import Note from '../note/note';
 import ErrorBoundaryNotes from '../error_boundaries/error_boundary_notes';
 import NotefulContext from '../NotefulContext';
@@ -23,7 +22,7 @@ class Main extends React.Component {
                     {this.notesForRoute().map((n, i) =>
                         <Note {...n} />
                     )}
-                    <NavLink to={'/addNote'}><button className='button__add_note'>Add note</button></NavLink>
+                    <button className='button__add_note' onClick={() => this.props.history.push('/addNote')}>Add note</button>
                 </section>
             </ErrorBoundaryNotes>
         )

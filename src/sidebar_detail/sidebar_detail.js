@@ -1,6 +1,5 @@
 import React from 'react';
 import Folder from '../folder/folder';
-import { Link } from 'react-router-dom';
 import ErrorBoundaryFolders from '../error_boundaries/error_boundary_folders';
 import NotefulContext from '../NotefulContext';
 
@@ -25,10 +24,7 @@ class SidebarDetail extends React.Component {
                             <Folder id={folder.id} name={folder.name} />
                         </li>
                     </ul>
-                    {/* I don't like how I'm doing this. Shouldn't this be a .push('/')?? */}
-                    <Link to={'/'}>
-                        <button className='sidebar__button'>Go back</button>
-                    </Link>
+                    <button className='sidebar__button' onClick={() => this.props.history.push('/')}>Go back</button>
                 </nav>
             </ErrorBoundaryFolders>
         )
