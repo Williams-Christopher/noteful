@@ -4,7 +4,7 @@ import config from '../config';
 import './add_folder_form.css';
 
 function ErrorHelp(props) {
-    return <span className='form__error'>{props.errorMessage}</span>
+    return <p className='form__error'>{props.errorMessage}</p>
 }
 
 class AddFolderForm extends React.Component {

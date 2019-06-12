@@ -1,15 +1,17 @@
 .form {
-    margin: 0 auto 20px auto;
+    margin: 10px;
     width: 75vw;
 }
 
 .form__add {
-    width: 50%;
+    width: 70%;
     margin: 0 auto;
 }
 
 .form__add_label {
+    display: inline-block;
     font-size: 1.5rem;
+    min-width: 200px;
 }
 
 .form__add_text {
@@ -33,12 +35,15 @@
 }
 
 .form__add_select {
-    width: 100%;
+    margin: 15px 0 0 0;
+    width: 50%;
     font-size: 1.25rem;
 }
 
 .form__button_container {
     margin: 20px auto;
+    display: flex;
+    justify-content: center;
 }
 
 .form__add_button {
@@ -52,5 +57,8 @@
 }
 
 .form__error {
+    margin: 10px 0;
+    border: 1px solid transparent;
     color: red;
+    min-height: 1.5em;
 }

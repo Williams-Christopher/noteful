@@ -94,10 +94,10 @@ class AddNoteForm extends React.Component {
         let validFolder = false;
         // folderId can't be empty
         if(folderId === '') {
-            errorMessages.nameError = 'Please select a folder.';
+            errorMessages.folderError = 'Please select a folder.';
             validFolder = false;
         } else {
-            errorMessages.nameError = '';
+            errorMessages.folderError = '';
             validFolder = true;
         }
 
@@ -123,12 +123,15 @@ class AddNoteForm extends React.Component {
                     <input className='form__add_text' type='text' name='note_name' id='note_name' placeholder='How to bake a cake' required onChange={e => this.noteNameChanged(e.target.value)}/>
                     <br />
                     <ErrorHelp errorMessage={this.state.errorMessages.nameError} />
+                    <br />
                     <label className='form__add_label' htmlFor='note_content'>Content:</label>
                     <textarea className='form__add_textarea' name='note_content' id='note_content' wrap='hard' onChange={e => this.noteContentChanged(e.target.value)} />
-                    <select name='note_folder' required onChange={e => this.folderChanged(e.target.value)}>
+                    <br />
+                    <select className='form__add_select' name='note_folder' required onChange={e => this.folderChanged(e.target.value)}>
                         <option value=''>Select a folder...</option>
                         {folders}
                     </select>
+                    <br />
                     <ErrorHelp errorMessage={this.state.errorMessages.folderError} />
                     <div className='form__button_container'>
                         <button className='form__add_button' type='submit' disabled={!this.state.formValid} >Add</button>
