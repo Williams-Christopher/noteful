@@ -2,9 +2,8 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 // import Button from '../button/button';
 import NotefulContext from '../NotefulContext';
+import config from '../config';
 import './note.css';
-
-const url = 'http://localhost:9090';
 
 function convertDateTime(utcDate = '01/01/1900'){
   return new Date(utcDate).toDateString();
@@ -20,7 +19,7 @@ class Note extends React.Component {
   handleDeleteNote (e, noteId, callback) {
     //e.preventDefault();
     console.log('Request to delete note with id ', noteId);
-    fetch(url + '/notes/' + noteId, {
+    fetch(config.url + '/notes/' + noteId, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',

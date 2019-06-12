@@ -1,9 +1,8 @@
 import React from 'react';
 // import cuid from 'cuid';
 import NotefuleContext from '../NotefulContext';
+import config from '../config';
 import './add_folder_form.css';
-
-const url = 'http://localhost:9090';
 
 function ErrorHelp(props) {
     return <span className='form__error'>{props.errorMessage}</span>
@@ -27,7 +26,7 @@ class AddFolderForm extends React.Component {
         let {folder_name} = e.target;
         let requestObject = {"name": folder_name.value};
 
-        fetch(url + '/folders', {
+        fetch(config.url + '/folders', {
             method: 'POST',
             body: JSON.stringify(requestObject),
             headers: {'content-type': 'application/json'}

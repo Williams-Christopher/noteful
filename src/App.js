@@ -10,6 +10,7 @@ import AddFolderForm from './add_folder_form/add_folder_form';
 import AddNoteForm from './add_note_form/add_note_form';
 // import DATA from './dummy-store';
 import NotefulContext from './NotefulContext';
+import config from './config';
 import './App.css';
 
 class App extends React.Component {
@@ -21,15 +22,13 @@ class App extends React.Component {
     };
   }
 
-  url = 'http://localhost:9090';
-
   componentDidMount() {
     // Update state with the dummy folder and note data
     // this.setState({
     //   folders: DATA.folders,
     //   notes: DATA.notes,
     // });
-    fetch(this.url + '/folders')
+    fetch(config.url + '/folders')
     .then(response => {
       if(!response.ok) {
         throw new Error('Folder fetch failed')
@@ -43,7 +42,7 @@ class App extends React.Component {
     })
     .catch(e => console.log(e))
 
-    fetch(this.url + '/notes')
+    fetch(config.url + '/notes')
     .then(response => {
       if(!response.ok) {
         throw new Error('Notes fetch failed')

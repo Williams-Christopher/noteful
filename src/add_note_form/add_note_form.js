@@ -1,8 +1,7 @@
 import React from 'react';
 import NotefuleContext from '../NotefulContext';
+import config from '../config';
 import '../add_folder_form/add_folder_form.css';
-
-const url = 'http://localhost:9090';
 
 function ErrorHelp(props) {
     return <span className='form__error'>{props.errorMessage}</span>
@@ -36,7 +35,7 @@ class AddNoteForm extends React.Component {
             "modified": new Date().toISOString(),
         };
 
-        fetch(url + '/notes', {
+        fetch(config.url + '/notes', {
             method: 'POST',
             body: JSON.stringify(requestBody),
             headers: {'content-type': 'application/json'}
