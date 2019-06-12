@@ -16,6 +16,7 @@ class AddFolderForm extends React.Component {
             error: true,
             errorMessage: '',
             newFolderName: '',
+            APIError: '',
         }
     }
 
@@ -33,7 +34,7 @@ class AddFolderForm extends React.Component {
         })
         .then(response => {
             if(!response.ok) {
-                throw new Error('The was an error creating the new folder.')
+                throw new Error('The was an error creating your new folder. Please try again in a moment.')
             }
             return response.json()
         })
@@ -41,7 +42,7 @@ class AddFolderForm extends React.Component {
             this.context.addFolder(folder)
             this.props.history.push('/folder/' + folder.id)
         })
-        .catch(e => console.log(e));
+        .catch(e => this.setState({APIError: e.message}));
     }
 
     handleCancelButton = () => {
@@ -89,6 +90,7 @@ class AddFolderForm extends React.Component {
                         <button className='form__add_button' onClick={this.handleCancelButton}>Cancel</button>
                     </div>
                 </form>
+                <h2>{this.state.APIError}</h2>
             </section>
         )
     }

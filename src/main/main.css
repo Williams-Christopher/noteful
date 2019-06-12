@@ -5,3 +5,13 @@
 .main__heading {
     margin-left: 20px;
 }
+
+.button__add_note {
+    display: block;
+    font-size: 1em;
+    margin: 20px auto;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    background-color: lightblue;
+}
