@@ -78,8 +78,8 @@ class AddFolderForm extends React.Component {
             <section className='form'>
                 <h2>Add a new folder:</h2>
                 <form className='form__add' onSubmit={this.handleAddFolder}>
-                    <label className='form__add_label' htmlFor='folder_name'>Name: </label>
-                    <input className='form__add_text' type='text' name='folder_name' id='folder_name' placeholder='Big Ideas' onChange={e => this.validateFolderName(e.target.value)}required />
+                    <label className='form__add_label' id='folder_name_label' htmlFor='folder_name'>Please name your new folder <span>(required)</span>:</label>
+                    <input className='form__add_text' type='text' name='folder_name' id='folder_name' aria-labelledby='folder_name_label' onChange={e => this.validateFolderName(e.target.value)}required />
                     <br />
                     <ErrorHelp errorMessage={this.state.errorMessage} />
                     <div className='form__button_container'>
@@ -88,7 +88,7 @@ class AddFolderForm extends React.Component {
                         <button className='form__add_button' onClick={this.handleCancelButton}>Cancel</button>
                     </div>
                 </form>
-                <h2>{this.state.APIError}</h2>
+                <p className='api_error'>{this.state.APIError}</p>
             </section>
         )
     }

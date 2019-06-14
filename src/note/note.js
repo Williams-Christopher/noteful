@@ -50,7 +50,7 @@ class Note extends React.Component {
                               <h2>{this.props.name}</h2>
                           </Link>
                   }
-                  <p>Modified {convertDateTime(this.props.modified)}</p>
+                  <p>Modified <time datetime={convertDateTime(this.props.modified)}>{convertDateTime(this.props.modified)}</time></p>
               </div>
               {this.props.detailNote ? 
                       <div className='note__detail'>

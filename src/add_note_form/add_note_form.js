@@ -127,7 +127,8 @@ class AddNoteForm extends React.Component {
                     <label className='form__add_label' htmlFor='note_content'>Content:</label>
                     <textarea className='form__add_textarea' name='note_content' id='note_content' wrap='hard' onChange={e => this.noteContentChanged(e.target.value)} />
                     <br />
-                    <select className='form__add_select' name='note_folder' required onChange={e => this.folderChanged(e.target.value)}>
+                    <label htmlFor='folder_select'>Create note in the which folder?<span className=''>(required)</span></label><br />
+                    <select className='form__add_select' name='note_folder' id='folder_select'required onChange={e => this.folderChanged(e.target.value)}>
                         <option value=''>Select a folder...</option>
                         {folders}
                     </select>
@@ -139,7 +140,7 @@ class AddNoteForm extends React.Component {
                         <button className='form__add_button' onClick={this.handleCancelButton}>Cancel</button>
                     </div>
                 </form>
-                <h2>{this.state.APIError}</h2>
+                <p className='api-error'>{this.state.APIError}</p>
             </section>
         )
     }

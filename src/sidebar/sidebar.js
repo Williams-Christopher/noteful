@@ -11,12 +11,12 @@ function Sidebar(props) {
             {(context) => {
                 return (
                     <ErrorBoundaryFolders>
-                        <nav className='sidebar'>
+                        <nav className='sidebar' role='navigation' aria-label='Menu'>
                             <h2 className='sidebar__heading'>Folder list:</h2>
                             <ul className='folder_list'>
                                 {context.folders.map((f, i) => {
                                     return (
-                                        <li>
+                                        <li key={f.id}>
                                             <NavLink to={'/folder/' + f.id} className='folder__link'>
                                                 <Folder name={f.name} id={f.id} />
                                             </NavLink>
