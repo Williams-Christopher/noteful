@@ -19,7 +19,7 @@ class Note extends React.Component {
   handleDeleteNote (e, noteId, callback) {
     e.preventDefault();
     console.log('Request to delete note with id ', noteId);
-    fetch(config.url + '/notes/' + noteId, {
+    fetch(config.url + '/api/notes/' + noteId, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',
@@ -29,9 +29,9 @@ class Note extends React.Component {
       if(!response.ok) {
         throw new Error('Delete unsucccessful')
       }
-      return response.json()
+      return response;
     })
-    .then(data => {
+    .then(response => {
       console.log('Callback...');
       callback(noteId);
       this.props.onDelete();
@@ -47,10 +47,10 @@ class Note extends React.Component {
                           <h2>{this.props.name}</h2>
                       :
                           <Link to={'/note/' + this.props.id} className='note__link'>
-                              <h2>{this.props.name}</h2>
+                              <h2>{this.props.note_name}</h2>
                           </Link>
                   }
-                  <p>Modified <time datetime={convertDateTime(this.props.modified)}>{convertDateTime(this.props.modified)}</time></p>
+                  <p>Modified <time datetime={convertDateTime(this.props.modified_date)}>{convertDateTime(this.props.modified_date)}</time></p>
               </div>
               {this.props.detailNote ? 
                       <div className='note__detail'>
@@ -59,7 +59,6 @@ class Note extends React.Component {
                   :
                       ''
               }
-              {/* <Button buttonText='Delete' /> */}
               <button className='note__button' onClick={(e) => this.handleDeleteNote(e, this.props.id, this.context.deleteNote)}>Delete</button>
           </article>
       )
@@ -67,9 +66,9 @@ class Note extends React.Component {
 }
 
 Note.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string,
-  modified: PropTypes.string,
+  id: PropTypes.number.isRequired,
+  note_name: PropTypes.string,
+  date_modified: PropTypes.string,
   content: PropTypes.string,
   detailNote: PropTypes.bool,
 }

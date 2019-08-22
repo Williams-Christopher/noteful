@@ -29,13 +29,13 @@ class AddNoteForm extends React.Component {
         this.setState({APIError: ''});
         let {note_name, note_content, note_folder} = e.target;
         let requestBody = {
-            "name": note_name.value,
+            "note_name": note_name.value,
             "content": note_content.value,
-            "folderId": note_folder.value,
-            "modified": new Date().toISOString(),
+            "folder_id": note_folder.value,
+            "date_modified": new Date().toISOString(),
         };
 
-        fetch(config.url + '/notes', {
+        fetch(config.url + '/api/notes', {
             method: 'POST',
             body: JSON.stringify(requestBody),
             headers: {'content-type': 'application/json'}
@@ -114,7 +114,7 @@ class AddNoteForm extends React.Component {
     }
 
     render() {
-        let folders = this.context.folders.map(f => <option value={f.id}>{f.name}</option>);
+        let folders = this.context.folders.map(folder => <option value={folder.id}>{folder.folder_name}</option>);
         return(
             <section className='form'>
                 <h2>Add a new note:</h2>

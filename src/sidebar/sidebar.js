@@ -14,11 +14,11 @@ function Sidebar(props) {
                         <nav className='sidebar' role='navigation' aria-label='Menu'>
                             <h2 className='sidebar__heading'>Folder list:</h2>
                             <ul className='folder_list'>
-                                {context.folders.map((f, i) => {
+                                {context.folders.map((folder, i) => {
                                     return (
-                                        <li key={f.id}>
-                                            <NavLink to={'/folder/' + f.id} className='folder__link'>
-                                                <Folder name={f.name} id={f.id} />
+                                        <li key={folder.id}>
+                                            <NavLink to={'/folder/' + folder.id} className='folder__link'>
+                                                <Folder name={folder.folder_name} id={folder.id} />
                                             </NavLink>
                                         </li>
                                     )

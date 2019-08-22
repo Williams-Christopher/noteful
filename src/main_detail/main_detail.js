@@ -16,7 +16,7 @@ class MainDetail extends React.Component {
 
     render() {
         let noteId = this.props.match.params.noteId;
-        let note = this.context.notes.find(n => n.id === noteId);
+        let note = this.context.notes.find(note => note.id === parseInt(noteId));
 
         return (
             <ErrorBoundaryNotes>

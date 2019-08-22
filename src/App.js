@@ -21,12 +21,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // Update state with the dummy folder and note data
-    // this.setState({
-    //   folders: DATA.folders,
-    //   notes: DATA.notes,
-    // });
-    fetch(config.url + '/folders')
+    fetch(config.url + '/api/folders')
     .then(response => {
       if(!response.ok) {
         throw new Error('Folder fetch failed')
@@ -40,7 +35,7 @@ class App extends React.Component {
     })
     .catch(e => console.log(e))
 
-    fetch(config.url + '/notes')
+    fetch(config.url + '/api/notes')
     .then(response => {
       if(!response.ok) {
         throw new Error('Notes fetch failed')
@@ -77,8 +72,6 @@ class App extends React.Component {
   }
 
   render() {
-    // console.log('App props.match:', this.props.match);
-    // console.log('App props.location: ', this.props.location);
     const contextValue = {
       folders: this.state.folders,
       notes: this.state.notes,
@@ -92,31 +85,6 @@ class App extends React.Component {
         <Header />
         <NotefulContext.Provider value={contextValue}>
           <main className='app'>
-            {/* <Route exact path='/' render={(routerProps) => {
-              console.log('router props: ', routerProps);
-              return(
-                <>
-                  <Sidebar />
-                  <Main />
-                </>)
-              }}
-            /> */}
-            {/* <Route path='/folder/:folderId' render={(routerProps) => {
-              return(
-                <>
-                  <Sidebar />
-                  <Main />
-                </>)
-              }}
-            /> */}
-            {/* <Route path='/note/:noteId' render={(routerProps) => {
-                return(
-                  <>
-                    <SidebarDetail />
-                    <MainDetail />
-                  </>)
-                }
-              } /> */}
             <Route exact path='/' component={Sidebar} />
             <Route exact path='/' component={Main} />
             <Route path='/folder/:folderId' component={Sidebar} />
