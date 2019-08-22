@@ -23,9 +23,9 @@ class AddFolderForm extends React.Component {
     handleAddFolder = e => {
         e.preventDefault();
         let {folder_name} = e.target;
-        let requestObject = {"name": folder_name.value};
+        let requestObject = {"folder_name": folder_name.value};
 
-        fetch(config.url + '/folders', {
+        fetch(config.url + '/api/folders', {
             method: 'POST',
             body: JSON.stringify(requestObject),
             headers: {'content-type': 'application/json'}
@@ -58,7 +58,7 @@ class AddFolderForm extends React.Component {
         if(newName === '') {
             error = true;
             errorMessage = 'Folder name can not be empty.';
-        } else if(!this.context.folders.find(f => f.name.toLowerCase() === newName.toLowerCase()) === false) {
+        } else if(!this.context.folders.find(folder => folder.folder_name.toLowerCase() === newName.toLowerCase()) === false) {
             // Folder name must be unique
             error = true;
             errorMessage = 'Folder name must be unique.'

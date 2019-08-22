@@ -12,8 +12,10 @@ class SidebarDetail extends React.Component {
 
     render() {
         let noteId = this.props.match.params.noteId;
-        let note = this.context.notes.find(n => n.id === noteId) || {};
-        let folder = this.context.folders.find(f => f.id === note.folderId) || {};
+        // noteId is a string and the database stores the note.id as a number
+        // using == instead results in webpack complaining
+        let note = this.context.notes.find(note => note.id === parseInt(noteId)) || {};
+        let folder = this.context.folders.find(folder => folder.id === parseInt(note.folder_id)) || {};
 
         return (
             <ErrorBoundaryFolders>
@@ -21,7 +23,7 @@ class SidebarDetail extends React.Component {
                     <h2 className='sidebar__heading'>Folder list:</h2>
                     <ul className='folder_list'>
                         <li>
-                            <Folder id={folder.id} name={folder.name} />
+                            <Folder id={folder.id} name={folder.folder_name} />
                         </li>
                     </ul>
                     <button className='sidebar__button' onClick={() => this.props.history.push('/')}>Go back</button>

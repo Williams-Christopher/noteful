@@ -8,7 +8,7 @@ class Main extends React.Component {
     static contextType = NotefulContext;
     notesForRoute = () => {
         if (this.props.match.path === '/folder/:folderId') {
-            return this.context.notes.filter(n => n.folderId === this.props.match.params.folderId);
+            return this.context.notes.filter(note => note.folder_id === parseInt(this.props.match.params.folderId));
         } else {
             return this.context.notes;
         }
@@ -20,7 +20,7 @@ class Main extends React.Component {
                 <section className='main'>
                     <h2 className='main__heading'>Notes:</h2>
                     {this.notesForRoute().map((n, i) =>
-                        <Note {...n} />
+                        <Note {...n} key={n.id} />
                     )}
                     <button className='button__add_note' onClick={() => this.props.history.push('/addNote')}>Add note</button>
                 </section>
