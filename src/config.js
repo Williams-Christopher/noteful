@@ -1,5 +1,5 @@
 const config = {
-    url: 'http://localhost:8000',
+    url: 'https://still-harbor-53368.herokuapp.com',
 }
 
 export default config;

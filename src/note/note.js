@@ -44,7 +44,7 @@ class Note extends React.Component {
           <article className='note'>
               <div className='note__summary'>
                   {this.props.detailNote ?
-                          <h2>{this.props.name}</h2>
+                          <h2>{this.props.note_name}</h2>
                       :
                           <Link to={'/note/' + this.props.id} className='note__link'>
                               <h2>{this.props.note_name}</h2>
